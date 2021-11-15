@@ -1,4 +1,5 @@
 # Login System Project
+import getpass
 import bcrypt
 # create a file to store thed username & password
 # with open('database.txt','w') as db:
@@ -7,8 +8,8 @@ import bcrypt
 # register function
 def register():
     username = input("Username:")
-    password = input("Password:")
-    password1 = input("Confirm Password:")
+    password = getpass.getpass(prompt="Password:")
+    password1 = getpass.getpass(prompt="Confirm Password:")
 
     db = open('database.txt', 'r')
     user = []
@@ -19,7 +20,7 @@ def register():
         user.append(a)
         passwd.append(b)
     data = dict(zip(user, passwd))
-    print(data)
+    
     if password != password1:
         print("Password Don't match,restart:")
         register()
@@ -36,13 +37,12 @@ def register():
                 password = bcrypt.hashpw(password, bcrypt.gensalt())
             with open('database.txt', 'a') as db:
                 db.write(username+'--->'+str(password)+'\n')
-                print(data)
     db.close()
 
 # login access function
 def login():
     username = input('Enter your Username:')
-    password = input('Enter your Password:')
+    password = getpass.getpass(prompt='Enter your Password:')
 
     if not len(username or password) < 1:
         user = []
