@@ -1,5 +1,5 @@
 # Login System Project
-
+import bcrypt
 # create a file to store thed username & password
 # with open('database.txt','w') as db:
 #     pass
@@ -31,8 +31,11 @@ def register():
             print("Username already exist, restart:")
             register()
         else:
+            if password == password1:
+                password = password.encode('utf-8')
+                password = bcrypt.hashpw(password, bcrypt.gensalt())
             with open('database.txt', 'a') as db:
-                db.write(username+'--->'+password+'\n')
+                db.write(username+'--->'+str(password)+'\n')
                 print(data)
     db.close()
 
@@ -54,18 +57,22 @@ def login():
         
         try:
             if data[username]:
+                hashed_passwd = data[username].strip('b')
+                hashed_passwd = hashed_passwd.replace("'","")
+                hashed_passwd = hashed_passwd.encode('utf-8')
                 try:
-                    if data.get(username) == password:
+                    if bcrypt.checkpw(password.encode(),hashed_passwd):
                         print('Login Accesed')
-                    else:
-                        print("Incorrect Password and Username")
-                        login()
+                        print(F'Hi {username}')
+                    # else:
+                    #     print("Incorrect Password")
+                    #     login()
                 except:
-                    print("Enter Correct Password")
+                    print("Incorrect Password")
                     login()
-            else:
-                print('This username doesn\'t exist')
-                exit()
+            # else:
+            #     print('This username & Password doesn\'t exist')
+            #     exit()
         except:
             print('Login error')
     else:
