@@ -1,4 +1,5 @@
 [![Python version](https://img.shields.io/badge/Python-3.8-green?style=flat&logo=python)](https://docs.python.org/3.8/)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/zengboi/CLI-Login-System/blob/main/LICENSE)
 
 # CLI Login System
 
@@ -35,7 +36,7 @@ To deploy this project run
 
     
 ## LICENSE
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/zengboi/CLI-Login-System/blob/main/LICENSE)
+
 
 
 Copyright 2021 Mithilesh Gautam
